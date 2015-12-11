@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+SlimTwitter is an Open Source app realized by Leonardo Rignanese
+ GNU GENERAL PUBLIC LICENSE  Version 2, June 1991
+-->
+<resources>
+    <!-- TRANSLATION IS MADE BY: *minimaster4734* -->
+
+    <!--menu string-->
+    <string name="openInBrowser">Ouvrir sur le navigateur</string>
+    <string name="settings">Paramètres</string>
+    <string name="refresh">Rafraîchir</string>
+    <string name="share">Partager l\'application</string>
+    <!--end menu string-->
+
+    <!--settings-->
+    <string name="prefCat_tw_settings_title"> Paramètres de Twitter</string>
+    <string name="prefCat_app_settings_title">Paramètres de l\'application</string>
+    <string name="prefCat_app_information_title">Informations sur l\'application</string>
+    <string name="version">Version</string>
+    <!--end settings-->
+
+    <!--page error-->
+    <string name="titleNoConnection">Oops, il y a eu un problème!</string>
+    <string name="descriptionNoConnection">Veuillez vérifier votre connexion et essayez à nouveau.</string>
+
+    <string name="awards"> Cette application est Open Source.</string>
+    <!--end page error-->
+
+    <!--other-->
+    <string name="downloadInstruction"> Pour installer l\'application SlimTwitter:\n
+- Accédez: https://play.google.com/apps/testing/it.rignanese.leo.slimtwitter \n
+- Ouvrez votre session Google (si vous ne l\'avez déjà fait)\n
+- Appuyez sur "Devenir un testeur beta"\n
+- Sur Play Store, accédez: https://play.google.com/store/apps/details?id=it.rignanese.leo.slimtwitter</string>
+    <string name="thanks">Merci!</string>
+    <!--end other-->
+</resources>

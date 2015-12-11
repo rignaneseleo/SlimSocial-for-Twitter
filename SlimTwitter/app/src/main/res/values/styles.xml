@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Standard theme. -->
+    <style name="SlimTwitterTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/azureSlimTwitterTheme</item>
+        <item name="colorPrimaryDark">@color/darkAzureSlimTwitterTheme</item>
+
+        <!--color of floating button-->
+        <item name="colorAccent">@color/darkAzureSlimTwitterTheme</item>
+
+        <!--to hide the action bar-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>
