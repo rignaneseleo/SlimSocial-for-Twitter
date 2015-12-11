@@ -1,0 +1,3 @@
+v1.0
+- Initial Release
+- Traductions: English, Italian, French, German, Spanish, Portuguese, Indonesian
