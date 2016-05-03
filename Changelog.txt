@@ -1,3 +1,11 @@
 v1.0
 - Initial Release
 - Traductions: English, Italian, French, German, Spanish, Portuguese, Indonesian
+
+v2.0
+- Implemented AdvancedWebView:
+	- full compatibility for all versions
+	- upload of files
+	- more speed and security
+- Removed bad traductions
+- More lightweight
