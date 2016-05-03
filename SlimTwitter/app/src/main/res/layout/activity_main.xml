@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="it.rignanese.leo.slimtwitter.MainActivityTwitter">
+    android:fitsSystemWindows="true">
 
-    <!--scollview and webview-->
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_container"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <!-- webview-->
+    <im.delight.android.webview.AdvancedWebView
+        android:id="@+id/webView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center" />
 
-        <WebView
-            android:id="@+id/webView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center"/>
-
-    </android.support.v4.widget.SwipeRefreshLayout>
 
     <!--floating button-->
-    <android.support.design.widget.FloatingActionButton
+
+    <Button
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_button"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_action_hardware_keyboard_arrow_up"/>
+        android:layout_gravity="bottom|center"
+        android:text="⇑"
+        android:textSize="35dp"
+        android:textColor="#fff"
+    />
 
 </android.support.design.widget.CoordinatorLayout>

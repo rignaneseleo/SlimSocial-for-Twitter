@@ -1,9 +1,15 @@
-<resources>>
+<resources>
+    <style name="SlimSocialforTwitterTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/officialAzureTwitter</item>
+        <item name="colorPrimaryDark">@color/officialAzureTwitter</item>
 
-    <style name="SlimTwitterTheme.NoActionBar">
+        <!--color of floating button-->
+        <item name="colorAccent">@color/officialAzureTwitter</item>
+
+        <!--to hide the action bar-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/officialAzureTwitter</item>
+        <item name="android:statusBarColor">@color/officialAzureTwitter</item>
     </style>
 </resources>

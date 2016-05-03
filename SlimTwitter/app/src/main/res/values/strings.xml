@@ -1,22 +1,14 @@
 <!--
-SlimTwitter is an Open Source app realized by Leonardo Rignanese
+SlimSocial for Twitter is an Open Source app realized by Leonardo Rignanese
  GNU GENERAL PUBLIC LICENSE  Version 2, June 1991
 -->
 <resources>
-    <string name="app_name" translatable="false">SlimTwitter</string>
+    <string name="app_name" translatable="false">SlimSocial for Twitter</string>
     <string name="urlTwitterMobile" translatable="false">https://mobile.twitter.com</string>
 
     <!--  !!!  PLEASE TRANSLATE KEEPING THIS FORMAT.  !!!   -->
 
     <!-- TRANSLATION IS MADE BY: *YOURNAME* -->
-
-    <!--menu string-->
-    <string name="refresh">Refresh</string>
-    <string name="top" translatable="false">Top</string>
-    <string name="openInBrowser">Open using the Browser</string>
-    <string name="settings">Settings</string>
-    <string name="share">Share this app</string>
-    <!--end menu string-->
 
     <!--page error-->
     <string name="titleNoConnection">Ops, there is a problem!</string>
@@ -24,31 +16,16 @@ SlimTwitter is an Open Source app realized by Leonardo Rignanese
     <string name="awards">This is an Open Source app.</string>
     <!--end page error-->
 
-    <!--settings-->
-    <string name="prefCat_tw_settings_title">Twitter Settings</string>
-    <string name="prefCat_app_settings_title">App Settings</string>
-    <string name="prefCat_app_information_title">App Information</string>
-    <string name="version">Version</string>
-    <!--end settings-->
-
-    <!--other-->
-    <string name="downloadInstruction">To download SlimTwitter you have to:\n
-    - Open https://play.google.com/apps/testing/it.rignanese.leo.slimtwitter \n
-    - Login in Google (if you aren\'t already logged)\n
-    - Push \"Become a tester\"\n - Open this with the Play Store App: https://play.google.com/store/apps/details?id=it.rignanese.leo.slimtwitter</string>
-    <string name="thanks">Thanks!</string>
-    <!--end other-->
-
 
     <!-- PLAY STORE PAGE
 
 DESCRIPTION ( max 80 char! shape and adapt it. use http://www.charcounter.com/ ):
-With less than 1Mb, allows you to enjoy the Twitter web experience.
+Enjoy the Twitter web experience with less than 1Mb.
 
 FULL DESCRIPTION:
-After the publication of SlimFacebook I thought, why don't do the same with Twitter?
+After the publication of SlimSocial for Twitter I thought, why don't do the same with Twitter?
 
-Why do I download SlimTwitter?
+Why do I download SlimSocial for Twitter?
 - It is lightweight: it weighs less than 1 Mb;
 - It has simple, modern design: there is only what you need;
 - It is Open source: the code of this app is online on GitHub, anyone can verify the authenticity of the app and contribute to its development.
@@ -57,12 +34,8 @@ Why do I download SlimTwitter?
 - It respect your privacy: this app doesn't require special permits. Without consensus Twitter can not access to any data of your mobile phone;
 
 
-The app is in full development, so still doesn't work:
-- GPS;
-- Notifications;
-
 Link to GitHub
-https://github.com/leorigna/SlimTwitter
+https://github.com/rignaneseleo/SlimSocial-for-Twitter
     -->
 
 </resources>
