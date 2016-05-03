@@ -1,4 +1,12 @@
-# SlimSocial for Twitter
-Light version of Twitter. Light not only in weight but also in the use.
+#FOLLOW SLIMSOCIAL PROJECT
+## See more on XDA: 
+http://forum.xda-developers.com/android/apps-games/app-slimtwitter-t3269323
 
-See more on xda: http://forum.xda-developers.com/android/apps-games/app-slimtwitter-t3269323
+
+
+
+## I need you! I'm open to collaboration!
+FB: https://www.facebook.com/SlimSocialProject/
+
+
+
