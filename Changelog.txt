@@ -17,4 +17,4 @@ v3.0
 - Open Twitter link with the app
 
 v3.1
-- Full screen video
+- Full screen videos
