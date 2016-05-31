@@ -14,12 +14,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.widget.FrameLayout;
 
 import im.delight.android.webview.AdvancedWebView;
 
 
 public class MainActivity extends Activity implements AdvancedWebView.Listener {
-    private AdvancedWebView webViewTwitter;//the main webView where is shown twitter
+    //the main webView where is shown twitter
+    private AdvancedWebView webViewTwitter;
+
+    //object to show full screen videos
+    private WebChromeClient myWebChromeClient;
+    private FrameLayout mTargetView;
+    private FrameLayout mContentView;
+    private WebChromeClient.CustomViewCallback mCustomViewCallback;
+    private View mCustomView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +49,46 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
 
         // setup the webView
         webViewTwitter = (AdvancedWebView) findViewById(R.id.webView);
+
         webViewTwitter.setListener(this, this);
         webViewTwitter.addPermittedHostname("mobile.twitter.com");
         webViewTwitter.addPermittedHostname("twitter.com");
+
+        //full screen video
+        myWebChromeClient = new WebChromeClient(){
+            //this custom WebChromeClient allow to show video on full screen
+            @Override
+            public void onShowCustomView(View view, CustomViewCallback callback) {
+                mCustomViewCallback = callback;
+                mTargetView.addView(view);
+                mCustomView = view;
+                mContentView.setVisibility(View.GONE);
+                mTargetView.setVisibility(View.VISIBLE);
+                mTargetView.bringToFront();
+            }
+
+            @Override
+            public void onHideCustomView() {
+                if (mCustomView == null)
+                    return;
+
+                mCustomView.setVisibility(View.GONE);
+                mTargetView.removeView(mCustomView);
+                mCustomView = null;
+                mTargetView.setVisibility(View.GONE);
+                mCustomViewCallback.onCustomViewHidden();
+                mContentView.setVisibility(View.VISIBLE);
+            }
+        };
+        webViewTwitter.setWebChromeClient(myWebChromeClient);
+        mContentView = (FrameLayout) findViewById(R.id.main_content);
+        mTargetView = (FrameLayout) findViewById(R.id.target_view);
 
 
         String urlSharer = ExternalLinkListener();//get the external shared link (if it exists)
         if (urlSharer != null) {//if is a share request
             webViewTwitter.loadUrl(urlSharer);//load the sharer url
-        } else{
+        } else {
             webViewTwitter.loadUrl(getString(R.string.urlTwitterMobile));//load homepage
         }
     }
@@ -84,7 +125,7 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
                 // final step, set the proper Sharer...
                 webViewUrl = String.format("https://twitter.com/intent/tweet?text=%s&url=%s", sharedSubject, sharedUrl);
                 // ... and parse it just in case
-                 webViewUrl = Uri.parse(webViewUrl).toString();
+                webViewUrl = Uri.parse(webViewUrl).toString();
             }
         }
         return webViewUrl;
@@ -150,13 +191,18 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
     // handling the back button
     @Override
     public void onBackPressed() {
-        if (webViewTwitter.canGoBack()) {
-            webViewTwitter.goBack();
+        if (mCustomView != null) {
+            myWebChromeClient.onHideCustomView();//hide video player
         } else {
-            finish();// exit
+            if (webViewTwitter.canGoBack()) {
+                webViewTwitter.goBack();
+            } else {
+                finish();// close app
+            }
         }
     }
 }
+
 
 
 

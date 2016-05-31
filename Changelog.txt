@@ -15,3 +15,6 @@ v3.0
 - Share link with the app
 - Open external link with the default browser
 - Open Twitter link with the app
+
+v3.1
+- Full screen video
