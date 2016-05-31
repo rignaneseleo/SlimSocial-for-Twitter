@@ -11,7 +11,7 @@ v2.0
 - More lightweight
 
 v3.0
-- FAB button
+- Improved FAB button
 - Share link with the app
 - Open external link with the default browser
 - Open Twitter link with the app
