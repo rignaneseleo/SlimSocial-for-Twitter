@@ -9,3 +9,9 @@ v2.0
 	- more speed and security
 - Removed bad traductions
 - More lightweight
+
+v3.0
+- FAB button
+- Share link with the app
+- Open external link with the default browser
+- Open Twitter link with the app

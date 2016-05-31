@@ -7,44 +7,18 @@ package it.rignanese.leo.slimtwitter;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.Toast;
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.os.Build;
-import android.os.Environment;
-import android.provider.MediaStore;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import im.delight.android.webview.AdvancedWebView;
 
 
-public class MainActivity extends AppCompatActivity implements AdvancedWebView.Listener {
+public class MainActivity extends Activity implements AdvancedWebView.Listener {
     private AdvancedWebView webViewTwitter;//the main webView where is shown twitter
 
     @Override
@@ -54,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
         setContentView(R.layout.activity_main);
 
         //setup the floating button
-        Button fab = (Button) findViewById(R.id.fab);
+        com.github.clans.fab.FloatingActionButton fab = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,12 +36,58 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
             }
         });
 
+
         // setup the webView
         webViewTwitter = (AdvancedWebView) findViewById(R.id.webView);
+        webViewTwitter.setListener(this, this);
         webViewTwitter.addPermittedHostname("mobile.twitter.com");
         webViewTwitter.addPermittedHostname("twitter.com");
 
-        webViewTwitter.loadUrl(getString(R.string.urlTwitterMobile));//load homepage
+
+        String urlSharer = ExternalLinkListener();//get the external shared link (if it exists)
+        if (urlSharer != null) {//if is a share request
+            webViewTwitter.loadUrl(urlSharer);//load the sharer url
+        } else{
+            webViewTwitter.loadUrl(getString(R.string.urlTwitterMobile));//load homepage
+        }
+    }
+
+    // app is already running and gets a new intent (used to share link without open another activity
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+
+        webViewTwitter.loadUrl(ExternalLinkListener());
+    }
+
+    private String ExternalLinkListener() {
+        // grab an url if opened by clicking a link
+        String webViewUrl = getIntent().getDataString();
+        /** get a subject and text and check if this is a link trying to be shared */
+        String sharedSubject = getIntent().getStringExtra(Intent.EXTRA_SUBJECT);
+        String sharedUrl = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+
+        // if we have a valid URL that was shared by us, open the sharer
+        if (sharedUrl != null) {
+            if (!sharedUrl.equals("")) {
+                Log.e("Info", "sharedUrl != null");
+                // check if the URL being shared is a proper web URL
+                if (!sharedUrl.startsWith("http://") || !sharedUrl.startsWith("https://")) {
+                    // if it's not, let's see if it includes an URL in it (prefixed with a message)
+                    int startUrlIndex = sharedUrl.indexOf("http:");
+                    if (startUrlIndex > 0) {
+                        // seems like it's prefixed with a message, let's trim the start and get the URL only
+                        sharedUrl = sharedUrl.substring(startUrlIndex);
+                    }
+                }
+                // final step, set the proper Sharer...
+                webViewUrl = String.format("https://twitter.com/intent/tweet?text=%s&url=%s", sharedSubject, sharedUrl);
+                // ... and parse it just in case
+                 webViewUrl = Uri.parse(webViewUrl).toString();
+            }
+        }
+        return webViewUrl;
     }
 
     @SuppressLint("NewApi")
@@ -100,10 +120,12 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
     //*********************** WebView methods ****************************
 
     @Override
-    public void onPageStarted(String url, Bitmap favicon) {}
+    public void onPageStarted(String url, Bitmap favicon) {
+    }
 
     @Override
-    public void onPageFinished(String url) { }
+    public void onPageFinished(String url) {
+    }
 
     @Override
     public void onPageError(int errorCode, String description, String failingUrl) {
@@ -113,13 +135,14 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
     }
 
     @Override
-    public void onDownloadRequested(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+    public void onDownloadRequested(String url, String userAgent, String
+            contentDisposition, String mimetype, long contentLength) {
 
     }
 
     @Override
     public void onExternalPageRequest(String url) {
-
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
     }
 
 
