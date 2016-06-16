@@ -11,7 +11,7 @@ SlimSocial for Twitter is an Open Source app realized by Leonardo Rignanese
     <!-- TRANSLATION IS MADE BY: *YOURNAME* -->
 
     <!--page error-->
-    <string name="titleNoConnection">Ops, there is a problem!</string>
+    <string name="titleNoConnection">Oops, there is a problem!</string>
     <string name="descriptionNoConnection">Try to check the connection and refresh.</string>
     <string name="awards">This is an Open Source app.</string>
     <!--end page error-->
