@@ -37,14 +37,7 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
 
         setContentView(R.layout.activity_main);
 
-        //setup the floating button
-        com.github.clans.fab.FloatingActionButton fab = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                webViewTwitter.scrollTo(0, 0);//scroll up
-            }
-        });
+
 
 
         // setup the webView
@@ -176,8 +169,7 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
     }
 
     @Override
-    public void onDownloadRequested(String url, String userAgent, String
-            contentDisposition, String mimetype, long contentLength) {
+    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {
 
     }
 

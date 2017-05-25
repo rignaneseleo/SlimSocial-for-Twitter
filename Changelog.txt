@@ -18,3 +18,7 @@ v3.0
 
 v3.1
 - Full screen videos
+
+v3.2
+- Updated AdvancedWebView 3.0.0
+- Removed FAB

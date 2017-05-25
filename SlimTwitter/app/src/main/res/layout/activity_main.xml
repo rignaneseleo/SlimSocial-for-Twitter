@@ -16,20 +16,6 @@
             android:layout_height="fill_parent"
             android:layout_gravity="center" />
 
-        <!--floating button-->
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:src="@drawable/on_top"
-
-            fab:fab_colorNormal="@color/officialAzureTwitter"
-            fab:fab_colorPressed="@color/darkAzureTwitter"
-            fab:fab_size="mini" />
     </FrameLayout>
 
     <!--full screen video-->
