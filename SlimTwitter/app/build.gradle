@@ -7,8 +7,8 @@ android {
     defaultConfig {
         applicationId "it.rignanese.leo.slimtwitter"
         minSdkVersion 15
-        targetSdkVersion 24
-        versionCode 4
+        targetSdkVersion 23
+        versionCode 5
         versionName "3.2"
     }
     buildTypes {
