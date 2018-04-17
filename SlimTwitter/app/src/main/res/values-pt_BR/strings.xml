@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- **********************************************************  -->
+<!-- THIS TRANSLATION IS MADE BY Valeyard1 USING StringsXmlBuilder -->
+<!-- StringsXmlBuilder is an OPEN SOURCE tool realized by rignaneseleo <dev.rignaneseleo@gmail.com>-->
+<!-- https://github.com/rignaneseleo/Strings.xml-builder-and-translator-PHP -->
+<!-- **********************************************************  -->
+
+<resources>
+<string name="titleNoConnection">Oops, existe um problema!</string>
+<string name="descriptionNoConnection">Tente verificar a conexão e atualizar.</string>
+<string name="awards">Este é um aplicativo de código aberto.</string>
+</resources>
