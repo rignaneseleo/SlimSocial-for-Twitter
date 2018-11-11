@@ -4,10 +4,10 @@
     android:layout_height="match_parent">
 
     <FrameLayout xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:id="@+id/main_content">
+        android:fitsSystemWindows="true">
 
         <!-- webview-->
         <im.delight.android.webview.AdvancedWebView
@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
+
     </FrameLayout>
 
 </FrameLayout>
