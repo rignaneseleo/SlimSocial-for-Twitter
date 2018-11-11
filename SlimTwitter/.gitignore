@@ -1,0 +1,9 @@
+.gradle/
+build/
+/*/build/
+.idea/
+*.iml
+local.properties
+*.log
+/SlimFacebook - Alpha
+/SlimFacebook.rar
