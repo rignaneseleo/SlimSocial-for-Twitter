@@ -5,7 +5,6 @@ SlimSocial for Twitter is an Open Source app realized by Leonardo Rignanese
 
 package it.rignanese.leo.slimtwitter;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,7 +17,6 @@ import android.webkit.WebChromeClient;
 import android.widget.FrameLayout;
 
 import im.delight.android.webview.AdvancedWebView;
-
 
 public class MainActivity extends Activity implements AdvancedWebView.Listener {
     //the main webView where is shown twitter
@@ -38,17 +36,15 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
         setContentView(R.layout.activity_main);
 
 
-
-
         // setup the webView
-        webViewTwitter = (AdvancedWebView) findViewById(R.id.webView);
+        webViewTwitter = findViewById(R.id.webView);
 
         webViewTwitter.setListener(this, this);
         webViewTwitter.addPermittedHostname("mobile.twitter.com");
         webViewTwitter.addPermittedHostname("twitter.com");
 
         //full screen video
-        myWebChromeClient = new WebChromeClient(){
+        myWebChromeClient = new WebChromeClient() {
             //this custom WebChromeClient allow to show video on full screen
             @Override
             public void onShowCustomView(View view, CustomViewCallback callback) {
@@ -74,8 +70,8 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
             }
         };
         webViewTwitter.setWebChromeClient(myWebChromeClient);
-        mContentView = (FrameLayout) findViewById(R.id.main_content);
-        mTargetView = (FrameLayout) findViewById(R.id.target_view);
+        mContentView = findViewById(R.id.main_content);
+        mTargetView = findViewById(R.id.target_view);
 
 
         String urlSharer = ExternalLinkListener();//get the external shared link (if it exists)
@@ -116,7 +112,8 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
                     }
                 }
                 // final step, set the proper Sharer...
-                webViewUrl = String.format("https://twitter.com/intent/tweet?text=%s&url=%s", sharedSubject, sharedUrl);
+                webViewUrl =
+                        String.format("https://twitter.com/intent/tweet?text=%s&url=%s", sharedSubject, sharedUrl);
                 // ... and parse it just in case
                 webViewUrl = Uri.parse(webViewUrl).toString();
             }
@@ -163,14 +160,22 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
 
     @Override
     public void onPageError(int errorCode, String description, String failingUrl) {
-        String summary = "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head><body><h1 " +
-                "style='text-align:center; padding-top:15%;'>" + getString(R.string.titleNoConnection) + "</h1> <h3 style='text-align:center; padding-top:1%; font-style: italic;'>" + getString(R.string.descriptionNoConnection) + "</h3>  <h5 style='text-align:center; padding-top:80%; opacity: 0.3;'>" + getString(R.string.awards) + "</h5></body></html>";
-        webViewTwitter.loadData(summary, "text/html; charset=utf-8", "utf-8");//load a custom html page
+        String summary =
+                "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head><body><h1 "
+                        + "style='text-align:center; padding-top:15%;'>"
+                        + getString(R.string.titleNoConnection)
+                        + "</h1> <h3 style='text-align:center; padding-top:1%; font-style: italic;'>"
+                        + getString(R.string.descriptionNoConnection)
+                        + "</h3>  <h5 style='text-align:center; padding-top:80%; opacity: 0.3;'>"
+                        + getString(R.string.awards)
+                        + "</h5></body></html>";
+        webViewTwitter.loadData(summary, "text/html; charset=utf-8", "utf-8");
+        //load a custom html page
     }
 
     @Override
-    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {
-
+    public void onDownloadRequested(String url, String suggestedFilename, String mimeType,
+                                    long contentLength, String contentDisposition, String userAgent) {
     }
 
     @Override
@@ -194,7 +199,3 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
         }
     }
 }
-
-
-
-
