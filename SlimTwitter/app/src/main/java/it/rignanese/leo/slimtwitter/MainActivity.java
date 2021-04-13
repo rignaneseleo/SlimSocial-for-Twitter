@@ -92,33 +92,53 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
     }
 
     private String ExternalLinkListener() {
-        // grab an url if opened by clicking a link
-        String webViewUrl = getIntent().getDataString();
-        /** get a subject and text and check if this is a link trying to be shared */
-        String sharedSubject = getIntent().getStringExtra(Intent.EXTRA_SUBJECT);
-        String sharedUrl = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+        Intent intent = getIntent();
+        String intentAction = intent.getAction();
 
-        // if we have a valid URL that was shared by us, open the sharer
-        if (sharedUrl != null) {
-            if (!sharedUrl.equals("")) {
-                Log.e("Info", "sharedUrl != null");
-                // check if the URL being shared is a proper web URL
-                if (!sharedUrl.startsWith("http://") || !sharedUrl.startsWith("https://")) {
-                    // if it's not, let's see if it includes an URL in it (prefixed with a message)
-                    int startUrlIndex = sharedUrl.indexOf("http:");
-                    if (startUrlIndex > 0) {
-                        // seems like it's prefixed with a message, let's trim the start and get the URL only
-                        sharedUrl = sharedUrl.substring(startUrlIndex);
-                    }
-                }
-                // final step, set the proper Sharer...
-                webViewUrl =
-                        String.format("https://twitter.com/intent/tweet?text=%s&url=%s", sharedSubject, sharedUrl);
-                // ... and parse it just in case
-                webViewUrl = Uri.parse(webViewUrl).toString();
-            }
+        if (intentAction == null) {
+            return null;
         }
-        return webViewUrl;
+
+        // If this Activity was launched because the user clicked on a supported URL just use that URL.
+        if (intentAction.equals(Intent.ACTION_VIEW) && intent.getDataString() != null) {
+            return intent.getDataString();
+        }
+
+        // Extract text and/or a URL when text was shared to this app.
+        if (intentAction.equals(Intent.ACTION_SEND)) {
+            String sharedSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
+            String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+
+            String text = null;
+            String url = null;
+
+            if (sharedText != null) {
+                if (sharedText.startsWith("http://") || sharedText.startsWith("https://")) {
+                    // If the text starts with http[s]:// we just assume it's a URL and use it as the 'url' argument.
+                    url = sharedText;
+                } else {
+                    // Otherwise we'll use the value as text for the tweet.
+                    text = sharedText;
+                }
+            }
+
+            if (text == null && sharedSubject != null) {
+                // If we don't have a value for the text of the tweet yet, use the subject value.
+                text = sharedSubject;
+            }
+
+            Uri.Builder uriBuilder = Uri.parse("https://twitter.com/intent/tweet").buildUpon();
+            if (text != null) {
+                uriBuilder.appendQueryParameter("text", text);
+            }
+            if (url != null) {
+                uriBuilder.appendQueryParameter("url", url);
+            }
+
+            return uriBuilder.build().toString();
+        }
+
+        return null;
     }
 
     @SuppressLint("NewApi")
