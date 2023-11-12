@@ -46,6 +46,16 @@ SlimTwitter is an Open Source app realized by Leonardo Rignanese
                 <data
                     android:host="twitter.com"
                     android:scheme="https" />
+                <data
+                    android:host="x.com"
+                    android:scheme="https" />
+                <!-- alternative twitter links, used mainly for embedding -->
+                <data
+                    android:host="fxtwitter.com"
+                    android:scheme="https" />
+                <data
+                    android:host="vxtwitter.com"
+                    android:scheme="https" />
             </intent-filter>
 
             <intent-filter>
